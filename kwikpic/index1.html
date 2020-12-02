@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>KwikPic</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="#">
+
+</head>
+
+<body>
+    <br><br>
+   <div class="center"><h2>---------KWIK PICS---------</h2></div>
+  <fieldset>  
+    <legend><h3> STEP 1 </h3></legend>
+    Fill in your name and email address:
+    <div>
+      <br>
+      <form>
+        Name:
+        <input type="text" id="name_box" name="person_name"><br>
+        Email:
+        <input type="email" id="email_box" name="email"><br><br>
+      </form> 
+      <!-- make type == submit -->
+    </div>
+  </fieldset>
+
+  <fieldset>  
+    <legend><h3> STEP 2 </h3></legend>
+    Click your Picture:
+   <div class="center"><button class="btn btn-primary" id="click-btn">Click !</button></div>
+   
+   <div class="layout">
+    <!-- <div id="newImages"></div> -->
+    
+    <div class="row">
+      <div class="cell">
+        <video id="player" width="320px" height="240px" autoplay></video>
+      </div>
+      <div class="cell"> </div>
+      <canvas id="canvas" width="320px" height="240px"></canvas>
+    </div>
+   </div>
+  </fieldset>
+   <!--  
+   <div class="center">
+      <button class="btn btn-primary" id="capture-btn">Submit</button>
+    </div>
+    --> 
+  <fieldset>  
+    <legend><h3> STEP 3 </h3></legend>
+    Get your pics:
+
+    <div class="center">
+  	  <!-- make type == submit -->
+  		<button class="btn btn-primary" id="capture-btn">Submit</button>
+    </div>
+     
+    <div class="center" id="post_sub"></div>
+     
+    <div id="pick-image">
+      <label>Video is not supported. Pick an Image instead</label>
+      <input type="file" accept="image/*" id="image-picker">
+    </div>
+  </fieldset>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
