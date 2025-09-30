@@ -1,0 +1,445 @@
+import React from "react";
+import { Mail, Phone, MapPin, Linkedin, GraduationCap, Globe, Github, BookOpen, Award, Briefcase, Newspaper, ExternalLink, Download, Copy, Star, Sparkles, Cpu, Code2, Brain } from "lucide-react";
+
+// ====== QUICK NOTES ======
+// • This file is a single React component you can deploy anywhere (Vercel/Netlify/GitHub Pages).
+// • Styling uses Tailwind classes (no extra imports needed in this canvas).
+// • Edit the DATA objects below to update content. Everything renders from these.
+// • The design is intentionally academic: clean, print-friendly, and accessible.
+
+// ====== DATA ======
+const LINKS = {
+  scholar: "https://scholar.google.com/citations?user=B7Vt7FUAAAAJ&hl=en",
+  linkedin: "https://linkedin.com/in/deep-karkhanis",
+  email: "dkarkhan@alumni.cmu.edu",
+  phone: "+1-412-214-2212",
+  location: "Mountain View, CA, USA",
+  resumePdf: "#", // replace with a hosted URL to your PDF resume when you deploy
+};
+
+const HIGHLIGHTS = [
+  { icon: <Sparkles size={16} />, text: "Core contributor: Gemini 2.0, 2.5 (all sizes), Gemma 3" },
+  { icon: <Cpu size={16} />, text: "Research focus: Code Generation, RL, Thinking & AGI" },
+  { icon: <Code2 size={16} />, text: "Google Jules: Autonomous AI SWE — #1 on SWE-Bench (Google I/O)" },
+  { icon: <Brain size={16} />, text: "Gemini Personalization (Workspace-grounded answers) — Google I/O" },
+];
+
+const EXPERIENCE = [
+  {
+    org: "Google DeepMind",
+    role: "Research Scientist, Gemini Team",
+    time: "2024 — Present",
+    location: "Mountain View, CA",
+    bullets: [
+      "Core contributor: Gemini 2.0, 2.5 (all sizes), Gemma 3.",
+      "Specializing in code generation, RL, thinking and AGI research.",
+      "Google Jules: Autonomous AI Software Engineer — #1 on SWE-Bench (launched at Google I/O).",
+      "Gemini Personalization — personalized answers grounded in Workspace context (Google I/O).",
+    ],
+  },
+  {
+    org: "Abacus.AI",
+    role: "Machine Learning Researcher I, II",
+    time: "2022 — 2024",
+    location: "San Francisco, CA",
+    bullets: [
+      "Led training & deployment of open-source foundational LLMs ranking #1 on Open LLM leaderboard.",
+    ],
+  },
+  {
+    org: "Microsoft Research Lab (now Microsoft AI)",
+    role: "Microsoft AI Researcher",
+    time: "2020 — 2021",
+    location: "Seattle, WA (Remote)",
+    bullets: [
+      "DiskANN: Billion-scale multilingual kNN on < 64GB RAM. Patented & deployed worldwide.",
+    ],
+  },
+  {
+    org: "Kwikpic.in (Startup)",
+    role: "Co‑Founder & CTO",
+    time: "2019 — 2020",
+    location: "Mumbai, India (Acquired)",
+    bullets: [
+      "Adapted face recognition algorithms for Indian demographics.",
+    ],
+  },
+  {
+    org: "Tower Research Capital",
+    role: "Quantitative Researcher (Intern)",
+    time: "—",
+    location: "New York, NY",
+    bullets: ["Limestone Team."],
+  },
+  {
+    org: "RWTH Aachen University",
+    role: "Scientific Researcher (with Prof. Joost‑Pieter Katoen)",
+    time: "—",
+    location: "Aachen, Germany",
+    bullets: [],
+  },
+  {
+    org: "Institute of Science and Technology (IST) Austria",
+    role: "Scientific Researcher (with Prof. Krishnendu Chatterjee)",
+    time: "—",
+    location: "Vienna, Austria",
+    bullets: [],
+  },
+];
+
+const LLM_EXPERIENCE = {
+  released: [
+    "Gemini 2.0, 2.5: Pro, Flash, Flash‑Lite (incl. experimental checkpoints)",
+    "Gemma 3: Open‑source models based on Gemini",
+    "Smaug: World’s best OSS LLM in Q1 2024; first >80 leaderboard score",
+    
+    "Giraffe: First OSS LLM with >32k context length",
+  ],
+  pretraining: [
+    "Gemini 2.5: pretraining for code generation",
+    "Continued pretraining (CPT) for thinking & math reasoning",
+  ],
+  posttraining: [
+    "Tool use, RAG, coding, Workspace understanding via RLHF & RLAIF",
+  ],
+  rl: [
+    "Pass@K‑PO: directly optimizes pass@K during RL to maximize exploration",
+    "DPOP: fixes failure modes of DPO on low‑edit‑distance preference sets",
+  ],
+  agentic: [
+    "Google Jules: AI SWE solving complex real‑world software tasks (1M+ users)",
+    "Gemini Personalization: Workspace‑grounded, personalized answers + RAG",
+  ],
+  datasets: [
+    "AltQA, WikiQA, Few‑shot MetaMath; preference variants of ARC, HellaSwag",
+  ],
+};
+
+const PUBLICATIONS = [
+  {
+    title: "Pass@K Policy Optimization: Solving Harder RL Problems (NeurIPS Spotlight 2025)",
+    authors: "Deep Karkhanis, C. Walder*",
+    venue: "NeurIPS 2025 (Spotlight)",
+    link: "#",
+  },
+  { title: "Gemini 2.5 Technical Report", authors: "Gemini Team", venue: "Tech Report", link: "#" },
+  { title: "Smaug: DPO‑Positive", authors: "Arka Pal, Deep Karkhanis et al.", venue: "ICLR 2025", link: "#" },
+  { title: "Gemma 3: Technical Report", authors: "Gemma Team, Google DeepMind", venue: "Tech Report", link: "#" },
+  { title: "Giraffe: Expanding Context Lengths in LLMs", authors: "Arka Pal, Deep Karkhanis, Manley Roberts, et al.", venue: "Preprint", link: "#" },
+  {
+    title: "Multiple‑Environment MDPs: Efficient Analysis and Applications",
+    authors: "K. Chatterjee, M. Chmelík, D. Karkhanis, P. Novotný, A. Royer",
+    venue: "ICAPS 2020",
+    link: "https://aaai.org/ojs/index.php/ICAPS/article/view/6644",
+  },
+];
+
+const EDUCATION = [
+  {
+    school: "Carnegie Mellon University (CMU)",
+    degree: "M.S. in Machine Learning (GPA 4.21/4.00)",
+    location: "Pittsburgh, PA",
+  },
+  {
+    school: "Indian Institute of Technology, Bombay (IIT Bombay)",
+    degree:
+      "B.Tech. with Honors in Computer Science, Minor in Applied Statistics (US GPA 4.0/4.0; Honors GPA 10.0/10.0; Institute Rank 1)",
+    location: "Mumbai, India",
+  },
+];
+
+const AWARDS = [
+  "Speaker: RL in LLMs (NeurIPS 2024)",
+  "Invited Talk: Bounded Model Checking as Counting‑SAT in POMDPs (TU Aachen, 2021)",
+  "Speaker: Multi‑Environment MDPs (ICAPS 2020)",
+  "Exceptional Research Award, IIT Bombay (2019)",
+  "DAAD Scholarship for advanced research in Germany (2019)",
+  "Academic Excellence Award — Institute Rank 1, IIT Bombay (2017)",
+];
+
+const PROJECTS = [
+  {
+    title: "Kernel Approach for Attention Sparsity in Transformers",
+    note: "Reducing O(n^2) attention via intrinsic kernels (fixed & trainable).",
+    link: "https://deep-karkhanis.github.io/docs/sparse_attention.pdf",
+  },
+  {
+    title: "Code Generation from Natural Language",
+    note: "Augmented training with library docs; improved BLEU & HumanEval functional correctness.",
+    link: "https://deep-karkhanis.github.io/docs/code_gen_from_NL.pdf",
+  },
+  {
+    title: "Multimodal‑Multihop QA",
+    note: "First multimodal‑multihop retriever; SOTA corpus‑level retrieval accuracy on WebQA.",
+    link: "https://deep-karkhanis.github.io/docs/multimodal_multihop_qa-compressed.pdf",
+  },
+];
+
+const SKILLS = [
+  {
+    title: "AI Software Dev",
+    items: [
+      "LoRA/PEFT fine‑tuning",
+      "HF Transformers",
+      "DeepSpeed (ZeRO‑3)",
+      "Megatron‑LM",
+      "Flash Attention",
+      "PyTorch / TensorFlow",
+      "scikit‑learn, NumPy/SciPy",
+    ],
+  },
+  {
+    title: "AI/ML Topics",
+    items: [
+      "LLM Pretraining & Post‑training",
+      "RL / RLHF / RLAIF",
+      "RAG",
+      "Large‑scale data + error‑checking",
+      "Advanced ML & Statistics",
+      "CV / NLP / Multimodal ML",
+      "Stochastic Model Checking",
+    ],
+  },
+  {
+    title: "Languages & Dev",
+    items: ["Python", "C++", "C", "Java", "SQL", "Web Dev", "LaTeX"],
+  },
+];
+
+// ====== UI HELPERS ======
+const Badge = ({ children }: { children: React.ReactNode }) => (
+  <span className="inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs md:text-sm">
+    {children}
+  </span>
+);
+
+const Section = ({ id, icon, title, children }: { id: string; icon: React.ReactNode; title: string; children: React.ReactNode }) => (
+  <section id={id} className="scroll-mt-24">
+    <div className="flex items-center gap-2 mb-3">
+      <div className="p-2 rounded-xl border shadow-sm">{icon}</div>
+      <h2 className="text-xl md:text-2xl font-semibold">{title}</h2>
+    </div>
+    <div className="space-y-3 md:space-y-4">{children}</div>
+  </section>
+);
+
+const Card = ({ children }: { children: React.ReactNode }) => (
+  <div className="rounded-2xl border p-4 md:p-5 shadow-sm bg-white/50 dark:bg-zinc-900/50">
+    {children}
+  </div>
+);
+
+// ====== PAGE ======
+export default function AcademicSite() {
+  const copyEmail = () => {
+    navigator.clipboard?.writeText(LINKS.email);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-950 dark:to-zinc-900 text-zinc-900 dark:text-zinc-100">
+      {/* Top Bar */}
+      <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-zinc-900/60 bg-white/80 dark:bg-zinc-900/80 border-b">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+          <a href="#home" className="font-semibold">Deep Karkhanis</a>
+          <nav className="hidden md:flex items-center gap-3 text-sm">
+            <a href="#experience" className="hover:underline">Experience</a>
+            <a href="#llm" className="hover:underline">LLM</a>
+            <a href="#publications" className="hover:underline">Publications</a>
+            <a href="#education" className="hover:underline">Education</a>
+            <a href="#awards" className="hover:underline">Awards</a>
+            <a href="#projects" className="hover:underline">Projects</a>
+            <a href="#skills" className="hover:underline">Skills</a>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <main id="home" className="max-w-5xl mx-auto px-4 py-8 md:py-12 space-y-8 md:space-y-10">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="space-y-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Deep Karkhanis</h1>
+            <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl">
+              Research Scientist, <span className="font-medium">Google DeepMind (Gemini Team)</span>. I work on large language models with a focus on
+              code generation, reinforcement learning, and scalable reasoning.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {HIGHLIGHTS.map((h, i) => (
+                <Badge key={i}>{h.icon}{h.text}</Badge>
+              ))}
+            </div>
+          </div>
+          <div className="shrink-0 grid grid-cols-2 gap-2 w-full md:w-auto">
+            <a className="flex items-center gap-2 rounded-2xl border px-4 py-2 justify-center hover:shadow-sm" href={LINKS.scholar} target="_blank" rel="noreferrer">
+              <GraduationCap size={16}/> Google Scholar
+            </a>
+            <a className="flex items-center gap-2 rounded-2xl border px-4 py-2 justify-center hover:shadow-sm" href={LINKS.linkedin} target="_blank" rel="noreferrer">
+              <Linkedin size={16}/> LinkedIn
+            </a>
+            <button className="flex items-center gap-2 rounded-2xl border px-4 py-2 justify-center hover:shadow-sm" onClick={copyEmail} title="Copy email">
+              <Mail size={16}/> Email <Copy size={14}/>
+            </button>
+            <a className="flex items-center gap-2 rounded-2xl border px-4 py-2 justify-center hover:shadow-sm" href={LINKS.resumePdf}>
+              <Download size={16}/> CV (PDF)
+            </a>
+          </div>
+        </div>
+
+        {/* Contact Row */}
+        <Card>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm">
+            <div className="flex items-center gap-2"><Mail size={16}/><a href={`mailto:${LINKS.email}`} className="hover:underline">{LINKS.email}</a></div>
+            <div className="flex items-center gap-2"><Phone size={16}/><a href={`tel:${LINKS.phone}`}>{LINKS.phone}</a></div>
+            <div className="flex items-center gap-2"><MapPin size={16}/>{LINKS.location}</div>
+          </div>
+        </Card>
+
+        {/* Experience */}
+        <Section id="experience" icon={<Briefcase size={18}/>} title="Experience">
+          <div className="grid gap-4">
+            {EXPERIENCE.map((job, idx) => (
+              <Card key={idx}>
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+                  <div>
+                    <h3 className="font-semibold text-lg">{job.role}</h3>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400">{job.org} • {job.location}</p>
+                  </div>
+                  <div className="text-sm text-zinc-600 dark:text-zinc-400">{job.time}</div>
+                </div>
+                <ul className="list-disc pl-5 mt-2 space-y-1">
+                  {job.bullets.map((b, i) => (
+                    <li key={i}>{b}</li>
+                  ))}
+                </ul>
+              </Card>
+            ))}
+          </div>
+        </Section>
+
+        {/* LLM Experience */}
+        <Section id="llm" icon={<Cpu size={18}/>} title="LLM Experience">
+          <div className="grid md:grid-cols-2 gap-4">
+            <Card>
+              <h4 className="font-semibold mb-1">Key LLMs Released</h4>
+              <ul className="list-disc pl-5 space-y-1">
+                {LLM_EXPERIENCE.released.map((t, i) => (<li key={i}>{t}</li>))}
+              </ul>
+            </Card>
+            <Card>
+              <h4 className="font-semibold mb-1">Agentic AI & Product</h4>
+              <ul className="list-disc pl-5 space-y-1">
+                {LLM_EXPERIENCE.agentic.map((t, i) => (<li key={i}>{t}</li>))}
+              </ul>
+            </Card>
+            <Card>
+              <h4 className="font-semibold mb-1">Pre‑/Post‑Training</h4>
+              <ul className="list-disc pl-5 space-y-1">
+                {LLM_EXPERIENCE.pretraining.map((t, i) => (<li key={i}>{t}</li>))}
+                {LLM_EXPERIENCE.posttraining.map((t, i) => (<li key={i}>{t}</li>))}
+              </ul>
+            </Card>
+            <Card>
+              <h4 className="font-semibold mb-1">RL Research</h4>
+              <ul className="list-disc pl-5 space-y-1">
+                {LLM_EXPERIENCE.rl.map((t, i) => (<li key={i}>{t}</li>))}
+              </ul>
+            </Card>
+            <Card className="md:col-span-2">
+              <h4 className="font-semibold mb-1">Datasets & Benchmarks</h4>
+              <ul className="list-disc pl-5 space-y-1">
+                {LLM_EXPERIENCE.datasets.map((t, i) => (<li key={i}>{t}</li>))}
+              </ul>
+            </Card>
+          </div>
+        </Section>
+
+        {/* Publications */}
+        <Section id="publications" icon={<BookOpen size={18}/>} title="Select Publications">
+          <div className="space-y-3">
+            {PUBLICATIONS.map((p, i) => (
+              <Card key={i}>
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+                  <div>
+                    <a href={p.link} target="_blank" rel="noreferrer" className="font-medium hover:underline inline-flex items-center gap-1">
+                      {p.title} <ExternalLink size={14}/>
+                    </a>
+                    <div className="text-sm text-zinc-600 dark:text-zinc-400">{p.authors}</div>
+                  </div>
+                  <div className="text-sm text-zinc-600 dark:text-zinc-400">{p.venue}</div>
+                </div>
+              </Card>
+            ))}
+          </div>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">Full list on <a className="underline" href={LINKS.scholar} target="_blank" rel="noreferrer">Google Scholar</a>.</p>
+        </Section>
+
+        {/* Education */}
+        <Section id="education" icon={<GraduationCap size={18}/>} title="Education">
+          <div className="grid gap-4">
+            {EDUCATION.map((e, i) => (
+              <Card key={i}>
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+                  <div>
+                    <h3 className="font-semibold">{e.school}</h3>
+                    <div className="text-sm text-zinc-600 dark:text-zinc-400">{e.degree}</div>
+                  </div>
+                  <div className="text-sm text-zinc-600 dark:text-zinc-400">{e.location}</div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </Section>
+
+        {/* Awards */}
+        <Section id="awards" icon={<Award size={18}/>} title="Awards & Invited Talks">
+          <Card>
+            <ul className="list-disc pl-5 space-y-1">
+              {AWARDS.map((a, i) => (<li key={i}>{a}</li>))}
+            </ul>
+          </Card>
+        </Section>
+
+        {/* Projects */}
+        <Section id="projects" icon={<Newspaper size={18}/>} title="Additional Academic Research (CMU)">
+          <div className="grid md:grid-cols-2 gap-4">
+            {PROJECTS.map((pr, i) => (
+              <Card key={i}>
+                <a href={pr.link} target="_blank" rel="noreferrer" className="font-medium hover:underline inline-flex items-center gap-1">
+                  {pr.title} <ExternalLink size={14}/>
+                </a>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">{pr.note}</p>
+              </Card>
+            ))}
+          </div>
+        </Section>
+
+        {/* Skills */}
+        <Section id="skills" icon={<Code2 size={18}/>} title="Software & Programming Skills">
+          <div className="grid md:grid-cols-3 gap-4">
+            {SKILLS.map((s, i) => (
+              <Card key={i}>
+                <h4 className="font-semibold mb-1">{s.title}</h4>
+                <ul className="list-disc pl-5 space-y-1">
+                  {s.items.map((x, j) => (<li key={j}>{x}</li>))}
+                </ul>
+              </Card>
+            ))}
+          </div>
+        </Section>
+
+        {/* Footer */}
+        <footer className="pt-6 pb-10 text-sm text-zinc-600 dark:text-zinc-400">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <Globe size={16}/> <span>Last updated: Sep 2025</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <a className="underline" href={LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+              <a className="underline" href={LINKS.scholar} target="_blank" rel="noreferrer">Google Scholar</a>
+              <a className="underline" href="#home">Back to top</a>
+            </div>
+          </div>
+        </footer>
+      </main>
+    </div>
+  );
+}
